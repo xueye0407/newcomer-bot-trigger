@@ -1,0 +1,17 @@
+name: Trigger Newcomer Detection
+
+on:
+  schedule:
+    - cron: '0 3 * * 1-5'
+    - cron: '0 6 * * 1-5'
+  workflow_dispatch:
+
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send trigger message to Feishu
+        run: |
+          curl -X POST "${{ secrets.FEISHU_WEBHOOK_URL }}" \
+            -H "Content-Type: application/json" \
+            -d '{"msg_type": "text", "content": {"text": "【系统】定时检测触发 - 请检查新人入群情况"}}'          
