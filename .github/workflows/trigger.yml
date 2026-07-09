@@ -14,4 +14,4 @@ jobs:
         run: |
           curl -X POST "${{ secrets.FEISHU_WEBHOOK_URL }}" \
             -H "Content-Type: application/json" \
-            -dd '{"msg_type": "post", "content": {"post": {"zh_cn": {"title": "", "content": [[{"tag": "text", "text": "检测新人入群情况"}]]}}}}'
+            -d '{"msg_type": "post", "content": {"post": {"zh_cn": {"title": "", "content": [[{"tag": "text", "text": "检测新人入群情况"}]]}}}}'
