@@ -1,4 +1,3 @@
-# Updated: 2026-07-10
 name: Trigger Newcomer Detection
 
 on:
@@ -13,7 +12,8 @@ jobs:
     steps:
       - name: Send trigger message to Feishu
         run: |
-          curl -X POST "${{ secrets.FEISHU_WEBHOOK_URL }}" \
+          curl -X POST "$FEISHU_WEBHOOK_URL" \
             -H "Content-Type: application/json" \
-            -d '{"msg_type": "post", "content": {"post": {"zh_cn": {"title": "", "content": [[{"tag": "text", "text": "检测新人入群情况"}]]}}}}'
-Update trigger
+            -d '{"msg_type":"text","content":{"text":"检测新人入群情况"}}'          
+        env:
+          FEISHU_WEBHOOK_URL: ${{ secrets.FEISHU_WEBHOOK_URL }}
